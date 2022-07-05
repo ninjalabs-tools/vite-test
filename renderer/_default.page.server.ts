@@ -28,6 +28,7 @@ async function render(pageContext: PageContextBuiltIn & PageContext) {
         <title>${title}</title>
       </head>
       <body>
+      Helo
         <div id="app">${dangerouslySkipEscape(appHtml)}</div>
       </body>
     </html>`
