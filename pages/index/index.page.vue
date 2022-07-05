@@ -1,6 +1,10 @@
 <template>
   <h1>Welcome</h1>
-  Time: {{ time }}
+  Die aktuellen keks:
+  <ul>
+    <li v-for="kek of keks">{{ kek.title }}</li>
+  </ul>
+  <br />
   This page is:
   <ul>
     <li>Rendered to HTML.</li>
@@ -10,5 +14,5 @@
 
 <script lang="ts" setup>
 import Counter from './Counter.vue'
-defineProps<{ time: string }>()
+defineProps<{ keks: {title: string}[] }>()
 </script>
