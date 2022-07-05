@@ -28,4 +28,4 @@ export async function onBeforeRender(pageContext: PageContext) {
 // we defined earlier runs in the browser and needs `pageContext.pageProps`; we use
 // `passToClient` to tell `vite-plugin-ssr` to serialize and make `pageContext.pageProps`
 // available to the browser.
-export const passToClient = ['pageProps']
+export const passToClient = ['pageProps', "urlPathname"]
