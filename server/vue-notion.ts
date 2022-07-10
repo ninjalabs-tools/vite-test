@@ -81,6 +81,8 @@ export const renderVueBlocks = async (blocks: UnknownBlocks, assetDirectory: str
         },
     })(blocks)
     await Promise.all(promises)
+    console.log('assetdir', assetDirectory)
+    console.log('ls', await readdir(assetDirectory))
     return rendered
 }
 
@@ -127,8 +129,6 @@ function saveImageWithVariants(url: string, assetDirectory: string) {
     }), {
         original: imagename('original')
     } as Record<number | 'original', string>)
-
-    console.log('CWD', process.cwd())
 
     return {
         names,
