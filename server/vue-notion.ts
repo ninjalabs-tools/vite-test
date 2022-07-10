@@ -128,6 +128,8 @@ function saveImageWithVariants(url: string, assetDirectory: string) {
         original: imagename('original')
     } as Record<number | 'original', string>)
 
+    console.log('CWD', process.cwd())
+
     return {
         names,
         saving
