@@ -23,7 +23,7 @@ export async function onBeforeRender(pageContext: PageContext) {
   return {
     pageContext: {
       pageProps: {
-        content: (await renderVueBlocks(blocks, './public/generated', '/generated/')).filter(block => block)
+        content: (await renderVueBlocks(blocks, process.env.NODE_ENV == 'production' ?  './dist/client/generated' : './public/generated', '/generated/')).filter(block => block)
       }
     }
   }
