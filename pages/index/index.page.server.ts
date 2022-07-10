@@ -2,23 +2,28 @@
 // Environment: Node.js
 
 import { PageContext } from "../../renderer/types"
-import { Client } from "@notionhq/client";
-import { config } from "dotenv";
-import { notion } from "../../server/notion";
+import { notion, UnknownBlocks } from "../../server/notion";
+import { renderVueBlocks } from "../../server/vue-notion";
+
 
 export async function onBeforeRender(pageContext: PageContext) {
-    const database = await notion.databases.query({
-        database_id: '471754e3c7fd4ad6b97b2637bdf1f6ae'
-    })
-    const data = database.results.map(result => ({
-        title: result.properties.Name.title[0]?.text.content
-    }))
+    const pageId = '7002e8cacc504ba496d89d5fe3d5434b'
+    // const database = await notion.databases.query({
+    //     database_id: '471754e3c7fd4ad6b97b2637bdf1f6ae'
+    // })
+    // const data = database.results.map(result => ({
+    //     title: result.properties.Name.title[0]?.text.content
+    // }))
+
+    // const page = await notion.pages.retrieve({page_id: pageId})
+    const blocks = (await notion.blocks.children.list({block_id: pageId})).results as UnknownBlocks
+    // console.log(JSON.stringify(blocks))
 
   // We make `pageProps` available as `pageContext.pageProps`
   return {
     pageContext: {
       pageProps: {
-        keks: data
+        content: (await renderVueBlocks(blocks, './public/generated', '/generated/')).filter(block => block)
       }
     }
   }
