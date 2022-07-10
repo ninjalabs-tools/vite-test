@@ -81,8 +81,6 @@ export const renderVueBlocks = async (blocks: UnknownBlocks, assetDirectory: str
         },
     })(blocks)
     await Promise.all(promises)
-    console.log('assetdir', assetDirectory)
-    console.log('ls', await readdir(assetDirectory))
     return rendered
 }
 
